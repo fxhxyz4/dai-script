@@ -1,5 +1,9 @@
+@R fxhxyz
+@R fxhxyz.vercel.app
+@R https://dai.eu.com/pdr-exam-new#
+
 let counter = 0;
-const skipIndexes = [4, 7, 13];
+const skipIndexes = [4, 13];
 
 const startBtn = document.querySelector(".mode-start");
 
@@ -42,6 +46,7 @@ function waitForElement(selector) {
 
     observer.observe(document.body, { childList: true, subtree: true });
     let existingElement = document.querySelector(selector);
+
     if (existingElement) {
       observer.disconnect();
       resolve(existingElement);
@@ -53,7 +58,7 @@ const modifyElements = () => {
   let rejectElements = document.querySelectorAll(".question-number-wrong");
 
   rejectElements.forEach(el => {
-    let questionIndex = parseInt(el.textContent.trim()); // Извлекаем индекс вопроса
+    let questionIndex = parseInt(el.textContent.trim());
 
     if (skipIndexes.includes(questionIndex)) {
       return;
@@ -67,9 +72,11 @@ const modifyElements = () => {
 
   wrongElements.forEach(el => {
     let input = el.querySelector("input[type='radio']");
+
     if (input) {
       input.checked = false;
     }
+
     el.classList.remove("wrong");
   });
 
@@ -77,18 +84,18 @@ const modifyElements = () => {
 
   correctElements.forEach(el => {
     let input = el.querySelector("input[type='radio']");
+
     if (input) {
       input.checked = true;
     }
   });
 
   let questionHelp = document.querySelectorAll(".question-help");
-    questionHelp.forEach(que => {
-      que.style.display = "none";
-    });
-};
 
-const changeStyle = () => {};
+  questionHelp.forEach(que => {
+    que.style.display = "none";
+  });
+};
 
 const checkPercentage = (ok, err, na) => {
   let total = ok + err + na;
