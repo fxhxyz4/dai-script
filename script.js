@@ -1,6 +1,8 @@
+/*
 @R fxhxyz
 @R fxhxyz.vercel.app
 @R https://dai.eu.com/pdr-exam-new#
+*/
 
 let counter = 0;
 const skipIndexes = [4, 13];
